@@ -1,0 +1,16 @@
+/build/
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+myutil
+*.o
+*.a
+*.so
+*.log
+*.txt
+*.swp
+*.bak
+*.out
+*.core
+
