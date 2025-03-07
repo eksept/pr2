@@ -15,6 +15,26 @@ void print_help() {
     printf("  -e, --errors PATH  Ошибки при записи в лог PATH\n");
 }
 
+int open_log_file(const char *path) {
+    FILE *file = fopen(path, "w");
+    if (!file) {
+        fprintf(stderr, "Ошибка: Недоступна запись в лог: %s\n", path);
+        return 0;
+    }
+    log_file = file;
+    return 1;
+}
+
+int open_error_file(const char *path) {
+    FILE *file = fopen(path, "w");
+    if (!file) {
+        fprintf(stderr, "Ошибка: Невозможно записать ошибки в лог: %s\n", path);
+        return 0;
+    }
+    error_file = file;
+    return 1;
+}
+
 int main(int argc, char *argv[]) {
     int option;
     int users_flag = 0, processes_flag = 0;
@@ -40,18 +60,10 @@ int main(int argc, char *argv[]) {
                 print_help();
                 return 0;
             case 'l':
-                log_file = fopen(optarg, "w");
-                if (!log_file) {
-                    fprintf(stderr, "Ошибка: Недоступна запись в лог: %s\n", optarg);
-                    return 1;
-                }
+                if (!open_log_file(optarg)) return 1;
                 break;
             case 'e':
-                error_file = fopen(optarg, "w");
-                if (!error_file) {
-                    fprintf(stderr, "Ошибка: Невозможно записать ошибки в лог: %s\n", optarg);
-                    return 1;
-                }
+                if (!open_error_file(optarg)) return 1;
                 break;
             default:
                 print_help();
@@ -67,4 +79,3 @@ int main(int argc, char *argv[]) {
 
     return 0;
 }
-
