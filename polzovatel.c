@@ -1,5 +1,5 @@
-#include "users.h"
-#include "logger.h"
+#include "polzovatel.h"
+#include "logs.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <pwd.h>
@@ -7,7 +7,7 @@
 
 #define MIN_USER_ID 1000
 
-void display_users() {
+void list_polzovatel() {
     struct passwd *user_info;
     FILE *output_stream = log_file ? log_file : stdout;
 

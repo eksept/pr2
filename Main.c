@@ -2,9 +2,9 @@
 #include <stdlib.h>
 #include <getopt.h>
 #include <string.h>
-#include "users.h"
-#include "processes.h"
-#include "logger.h"
+#include "polzovatel.h"
+#include "procesi.h"
+#include "logs.h"
 
 void print_help() {
     printf("Использование: myutil [Настройки]\n");
@@ -37,11 +37,11 @@ int open_error_file(const char *path) {
 
 int main(int argc, char *argv[]) {
     int option;
-    int users_flag = 0, processes_flag = 0;
+    int polzovatel_flag = 0, procesi_flag = 0;
 
     struct option long_options[] = {
-        {"users", no_argument, NULL, 'u'},
-        {"processes", no_argument, NULL, 'p'},
+        {"polzovatel", no_argument, NULL, 'u'},
+        {"procesi", no_argument, NULL, 'p'},
         {"help", no_argument, NULL, 'h'},
         {"log", required_argument, NULL, 'l'},
         {"errors", required_argument, NULL, 'e'},
@@ -51,10 +51,10 @@ int main(int argc, char *argv[]) {
     while ((option = getopt_long(argc, argv, "uph:l:e:", long_options, NULL)) != -1) {
         switch (option) {
             case 'u':
-                users_flag = 1;
+                polzovatel_flag = 1;
                 break;
             case 'p':
-                processes_flag = 1;
+                procesi_flag = 1;
                 break;
             case 'h':
                 print_help();
@@ -71,8 +71,8 @@ int main(int argc, char *argv[]) {
         }
     }
 
-    if (users_flag) list_users();
-    if (processes_flag) list_processes();
+    if (polzovatel_flag) list_polzovatel();
+    if (procesi_flag) list_procesi();
 
     if (log_file) fclose(log_file);
     if (error_file) fclose(error_file);

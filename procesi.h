@@ -1,7 +1,7 @@
-#ifndef PROCESSES_H
-#define PROCESSES_H
+#ifndef PROCESI_H
+#define PROCESI_H
 
-void list_processes();
+void list_procesi();
 
 #endif
 

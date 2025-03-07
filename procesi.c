@@ -1,5 +1,5 @@
-#include "processes.h"
-#include "logger.h"
+#include "procesi.h"
+#include "logs.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <dirent.h>
@@ -10,7 +10,7 @@
 #define PROC_DIRECTORY "/proc"
 #define CMDLINE_BUFFER_SIZE 512
 
-void display_processes() {
+void list_procesi() {
     DIR *proc_dir = opendir(PROC_DIRECTORY);
     if (!proc_dir) {
         fprintf(stderr, "Error: Unable to open directory %s\n", PROC_DIRECTORY);
